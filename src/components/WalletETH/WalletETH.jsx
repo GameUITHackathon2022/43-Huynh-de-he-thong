@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, Card, Button, Box, Avatar } from '@mui/material';
+import { Typography, Card, Button, Box, Avatar, Divider } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { CONNECT_ACC, FETCH_SOLIDITY } from '../../constraint/actionTypes';
 import { addressReceiver, transactABI, transactAddress } from '../../utils/constants';
@@ -14,15 +14,6 @@ const getContract = () => {
   const contract = new ethers.Contract(transactAddress, transactABI, signer);
   console.log(contract);
   return contract;
-};
-
-const style = {
-  position: 'absolute',
-  right: '0',
-  width: 400,
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
 };
 
 function WalletETH() {
@@ -118,63 +109,98 @@ function WalletETH() {
   }
 
   return (
-    <Box className="wallet" sx={style}>
+    <Card sx={{ color: '#000' }}>
       <Box
+        className="wallet"
         sx={{
+          position: 'absolute',
+          right: '0',
+          width: 400,
+          height: '100%',
+          border: '2px solid #000',
+          boxShadow: 24,
+          p: 4,
           display: 'flex',
-          alignItems: 'center',
-          width: '100%',
-          justifyContent: 'space-between',
+          flexDirection: 'column',
         }}
       >
-        <Box sx={{ display: 'flex', alignItems: 'center', padding: '8px' }}>
-          <Avatar src={metamask} />
-          <Typography variant="h6" sx={{ fontWeight: '700' }}>
-            Your Wallet:
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            width: '100%',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Box sx={{ display: 'flex', alignItems: 'center', padding: '8px' }}>
+            <Avatar src={metamask} />
+            <Typography variant="h6" sx={{ fontWeight: '700' }}>
+              Your Wallet:
+            </Typography>
+          </Box>
+          <Typography className="walletAddress" variant="subtitle1" sx={{ fontStyle: 'bold', color: 'rgb(0,0,0,0.15' }}>
+            {account_data ? `${account_data.slice(0, 5) + '...' + account_data.slice(38, 42)}` : 'Connect Wallet'}
           </Typography>
         </Box>
-        <Typography className="walletAddress" variant="subtitle1" sx={{ fontStyle: 'bold', color: 'rgb(0,0,0,0.15' }}>
-          {account_data ? `${account_data.slice(0, 5) + '...' + account_data.slice(38, 42)}` : 'Connect Wallet'}
-        </Typography>
-      </Box>
+        <Divider sx={{ border: '1px solid #ccc' }} />
 
-      <Box className="container" sx={{ padding: '8px' }}>
-        <Typography variant="subtitle1" sx={{ fontWeight: '600', opacity: '0.6' }}>
-          {account_data ? 'Total balance' : ''}
-        </Typography>
-
-        <Typography variant="h5" sx={{ fontWeight: '700', padding: '16px' }}>
-          {account_data ? parseFloat(balance).toFixed(3) + ' ETH' : 'Your Balance'}
-        </Typography>
-
-        <Typography variant="subtitle2" sx={{ fontWeight: '700', padding: '4px' }}>
-          Type amount of money you wanna donate here!
-        </Typography>
-
-        <input
-          className="wallet_input"
-          value={amount}
-          step="0.001"
-          type="number"
-          placeholder="Amount"
-          onChange={(e) => {
-            console.log(e.target.value);
-            setAmount(e.target.value);
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            marginTop: '24px',
+            padding: ' 16px',
+            border: '1px solid #ccc',
+            borderRadius: '16px',
           }}
-        ></input>
-        <Button
-          className="wallet__button"
-          onClick={handleClick}
-          variant="contained"
-          color="secondary"
-          sx={{ width: '100%', height: '60px', backgroundColor: 'rgb(32, 129, 226)' }}
         >
-          <Typography variant="h6" sx={{ fontWeight: '600', color: 'rgba(255,255,255,1)' }}>
-            {account_data ? 'Donate' : 'Connect to Wallet'}
+          <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: '600', textTransform: 'uppercase' }}>
+            {account_data ? 'Total balance' : ''}
           </Typography>
-        </Button>
+
+          <Typography variant="h4" sx={{ fontWeight: '700' }}>
+            {account_data ? parseFloat(balance).toFixed(3) + ' ETH' : 'Your Balance'}
+          </Typography>
+
+          <Typography variant="subtitle1" noWrap gutterBottom>
+            Type amount of money you wanna donate here!
+          </Typography>
+
+          <input
+            className="wallet_input"
+            value={amount}
+            step="0.001"
+            type="number"
+            placeholder="Amount"
+            onChange={(e) => {
+              console.log(e.target.value);
+              setAmount(e.target.value);
+            }}
+          />
+          <Button
+            className="wallet__button"
+            onClick={handleClick}
+            variant="contained"
+            color="secondary"
+            sx={{ width: '100%', height: '60px', backgroundColor: 'rgb(32, 129, 226)' }}
+          >
+            <Typography variant="h6" sx={{ fontWeight: '600', color: 'rgba(255,255,255,1)' }}>
+              {account_data ? 'Donate' : 'Connect to Wallet'}
+            </Typography>
+          </Button>
+        </Box>
+        <Divider sx={{ border: '1px solid #ccc', marginY: '16px' }} />
+
+        <Box sx={{ justifyItems: 'flex-end' }}>
+          <Typography>
+            For more information about the transparency policy and trust, we will release out history transactions{' '}
+            <a target="_blank" href="https://goerli.etherscan.io/address/0x9b729471D9A04ff08884686b347dcd5d8Bb76565">
+              here
+            </a>{' '}
+          </Typography>
+        </Box>
       </Box>
-    </Box>
+    </Card>
   );
 }
 
