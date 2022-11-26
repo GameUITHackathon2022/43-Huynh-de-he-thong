@@ -64,6 +64,7 @@ const NFTItem = ({
       <Box className="MyNFTInfo__container" onClick={handleClickOpen}>
         <Box className="MyNFTInfo__headerImg">
           <img
+          className="imgTest"
             src={`data:image/png;base64,${toBase64(image.buffer.data)}`}
             alt="NFT_Image"
           />

@@ -13,6 +13,7 @@ import {
   CardHeader,
   Grid,
   IconButton,
+  Box
 } from "@mui/material";
 import Container from "@mui/material/Container";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -62,7 +63,7 @@ const AuctionDetail = () => {
 
   // useEffect(() => {
   //   const handleCreateAuction = async (itemId, campId) => {
-  //     const listingPrice = ethers.utils.parseEther("0.003");
+  //     const listingPrice = ethers.utils.parseEther("0.07");
   //     await (
   //       await marketplaceContract.startAuction(itemId, 900000000000000, listingPrice)
   //     ).wait();
@@ -74,7 +75,7 @@ const AuctionDetail = () => {
   //     // }
   //     // dispatch(createAuction(auc))
   //   };
-  //   handleCreateAuction(4, 1);
+  //   handleCreateAuction(6, 1);
   // }, [marketplaceContract]);
 
   const nft = nftList.filter((nft) => nft.tokenId == nft_id)[0];
@@ -117,7 +118,8 @@ const AuctionDetail = () => {
   }
 
   return (
-    <div>
+    <Container  maxWidth="xl">
+      <Box sx={{marginLeft: '35px'}}>
       <Grid container spacing={3}>
         <Grid item lg={5}>
           <Swiper
@@ -284,14 +286,14 @@ const AuctionDetail = () => {
           >
             <Typography
               sx={{
-                color: "#1868B7",
+                color: "yellow",
                 marginRight: 1,
                 paddingBottom: "20px",
               }}
               variant="h5"
               gutterBottom
             >
-              {!isCompaingn ? 'NFT' : 'Campaign'}
+              {isCompaingn ? 'NFT' : 'Campaign'}
             </Typography>
             <VerifiedIcon
               sx={{
@@ -303,7 +305,7 @@ const AuctionDetail = () => {
           </div>
           <Typography
             sx={{
-              color: "#353840",
+              color: "#fff",
               fontFamily: "Poppins , sans-serif",
               fontSize: "40px",
               fontWeight: "700",
@@ -317,24 +319,24 @@ const AuctionDetail = () => {
           <div style={{ display: "flex", alignItems: "center" }}>
             <Typography
               sx={{
-                color: "#04111d",
+                color: "#fff",
                 marginRight: 1,
                 fontWeight: "600",
               }}
               variant="h5"
               gutterBottom
             >
-              Owned by
+              {isCompaingn ? 'Owned by' : ''}
             </Typography>
             <Typography
               sx={{
-                color: "#1868b7",
+                color: "#146d4d",
                 fontWeight: "600",
               }}
               variant="h5"
               gutterBottom
             >
-              yolanda22
+              {isCompaingn ? 'yolanda22' : ''}
             </Typography>
           </div>
           <div
@@ -347,12 +349,13 @@ const AuctionDetail = () => {
               style={{
                 display: "flex",
                 alignItems: "center",
+                color: 'pink'
               }}
             >
               <VisibilityOutlinedIcon />
               <p
                 style={{
-                  color: "#04111d",
+                  color: "#fff",
                   paddingLeft: "10px",
                   paddingRight: "30px",
                   fontSize: "20px",
@@ -364,14 +367,14 @@ const AuctionDetail = () => {
             </div>
             <div
               style={{
-                color: "##04111d",
+                color: "##fff",
                 display: "flex",
                 alignItems: "center",
               }}
             >
               <FavoriteBorderIcon
                 sx={{
-                  color: "#04111d",
+                  color: "red",
                   fontWeight: "600",
                   fontSize: "20px",
                 }}
@@ -379,12 +382,12 @@ const AuctionDetail = () => {
               <p
                 style={{
                   paddingLeft: "10px",
-                  color: "#04111d",
+                  color: "#fff",
                   fontWeight: "600",
                   fontSize: "20px",
                 }}
               >
-                8 Favorites
+                8 Likes
               </p>
             </div>
           </div>
@@ -424,7 +427,7 @@ const AuctionDetail = () => {
                   padding:'12px 0'
                 }}
               >
-                End in {endAt?.toString()}
+                End in 23/12/2022 15:40
               </p>
             </div>
 
@@ -521,7 +524,8 @@ const AuctionDetail = () => {
           </div>
         </Grid>
       </Grid>
-    </div>
+      </Box>
+    </Container >
   );
 };
 

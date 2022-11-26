@@ -45,18 +45,19 @@ const MyTab = () => {
     setValue(newValue);
   };
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%",color:"white" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
+         
         >
-          <Tab label="Collected" {...a11yProps(0)} />
-          <Tab label="Donate NFT" {...a11yProps(1)} />
-          <Tab label="Favorited" {...a11yProps(2)} />
-          <Tab label="Activity" {...a11yProps(3)} />
-          <Tab label="More" {...a11yProps(4)} />
+          <Tab  sx={{color:"white"}} label="Collected" {...a11yProps(0)} />
+          <Tab  sx={{color:"white"}} label="Donate NFT" {...a11yProps(1)} />
+          <Tab  sx={{color:"white"}} label="Favorited" {...a11yProps(2)} />
+          <Tab  sx={{color:"white"}} label="Activity" {...a11yProps(3)} />
+          <Tab  sx={{color:"white"}} label="More" {...a11yProps(4)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>

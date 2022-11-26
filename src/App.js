@@ -48,7 +48,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    web3Handler();
+    // web3Handler();
     dispatch(fetchSolidity());
   });
 
@@ -60,10 +60,9 @@ const App = () => {
             <Box className="pages">
               <Switch>
                 <Route path="/" exact component={Landing} />
-                <Route path="/create-nft" exact component={Create_NFT} />
+                <Route path="/auction/:nft_id" exact component={AuctionDetail} />
                 <Route path="/account" exact component={Accounts} />
-              <Route path="/auction/:nft_id" exact component={AuctionDetail} />
-
+                <Route path="/create-nft" exact component={Create_NFT} />
               </Switch>
             </Box>
           </Box>

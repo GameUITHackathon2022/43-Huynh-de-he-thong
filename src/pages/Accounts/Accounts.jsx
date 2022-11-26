@@ -12,7 +12,7 @@ let account_data = null;
 const Accounts = () => {
   const {account, isLoading} = useSelector(state=>state.solidity)
   return (
-    <Box>
+    <Box sx={{color:"white"}}>
       <Box
         classname="coverImg"
         sx={{

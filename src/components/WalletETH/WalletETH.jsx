@@ -45,6 +45,12 @@ function WalletETH() {
     window.ethereum.on('chainChanged', (chainId) => {
       window.location.reload();
     });
+    dispatch({
+      type: CONNECT_ACC,
+      payload: {
+        account: accounts[0],
+      },
+    });
   };
 
   const handleSend = async () => {
