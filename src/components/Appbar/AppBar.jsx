@@ -17,7 +17,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Avatar, Button, Divider, MenuList } from '@mui/material';
 import Popover from '@mui/material/Popover';
-import img1 from '../../assets/logo.png';
+import img1 from '../../assets/logo.svg';
 import HoverMenu from 'material-ui-popup-state/HoverMenu';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -57,9 +57,9 @@ const style = {
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  backgroundColor: alpha(theme.palette.common.white, 0.4),
   '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
+    backgroundColor: alpha(theme.palette.common.white, 0.6),
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
@@ -142,11 +142,11 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem sx={{ paddingY: 1, paddingX: 2 }} onClick={handleMenuClose}>
+      <MenuItem sx={{ width: '200px' }} onClick={handleMenuClose}>
         Profile
       </MenuItem>
       <Divider />
-      <MenuItem sx={{ paddingY: 1, paddingX: 2 }} onClick={handleMenuClose}>
+      <MenuItem sx={{ width: '200px' }} onClick={handleMenuClose}>
         My account
       </MenuItem>
       <Divider />
@@ -170,7 +170,7 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem sx={{ paddingY: 1, paddingX: 2 }}>
+      <MenuItem sx={{ width: '200px' }}>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
             <MailIcon />
@@ -179,7 +179,7 @@ export default function PrimarySearchAppBar() {
         <p>Messages</p>
       </MenuItem>
       <Divider />
-      <MenuItem sx={{ paddingY: 1, paddingX: 2 }}>
+      <MenuItem sx={{ width: '200px' }}>
         <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
           <Badge badgeContent={17} color="error">
             <NotificationsIcon />
@@ -187,7 +187,7 @@ export default function PrimarySearchAppBar() {
         </IconButton>
         <p>Notifications</p>
       </MenuItem>
-      <MenuItem sx={{ paddingY: 1, paddingX: 2 }} onClick={handleProfileMenuOpen}>
+      <MenuItem sx={{ width: '200px' }} onClick={handleProfileMenuOpen}>
         <IconButton
           size="large"
           aria-label="account of current user"
@@ -235,11 +235,11 @@ export default function PrimarySearchAppBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="sticky" sx={{ backgroundColor: 'transparent' }} elevation={0}>
-        <Toolbar>
+        <Toolbar sx={{color:"#000"}}>
           {/* <Avatar sx={{mr:"16px"}}/> */}
-          <img style={{ width: '100px', height: 'auto', marginRight: '16px' }} src={img1} alt="ditconmemay" />
-          <Typography variant="h6" noWrap component="div" sx={{ display: { xs: 'none', sm: 'block' } }}>
-            MUI
+          <img style={{ width: '40px', height: 'auto', marginRight: '16px' }} src={img1} alt="ditconmemay" />
+          <Typography variant="h6" noWrap component="div" sx={{ display: { xs: 'none', sm: 'block' } , textTransform:"uppercase"}}>
+            GreenSavers
           </Typography>
           <Search>
             <SearchIconWrapper>
@@ -267,9 +267,10 @@ export default function PrimarySearchAppBar() {
                 {...bindMenu(popupState1)}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                 transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+                sx={{mt: '10px'}}
               >
                 {/* start menu item */}
-                <MenuItem sx={{ paddingY: 1, paddingX: 2 }} onClick={popupState2.close}>
+                <MenuItem sx={{ width: '200px' }} onClick={popupState2.close}>
                   <ListItemIcon>
                     <ListAltIcon fontSize="medium" />
                   </ListItemIcon>
@@ -278,7 +279,7 @@ export default function PrimarySearchAppBar() {
                 <Divider />
                 {/* end menu item */}
                 {/* start menu item */}
-                <MenuItem sx={{ p: 2 }} onClick={popupState2.close}>
+                <MenuItem sx={{ width: '200px' }} onClick={popupState2.close}>
                   <ListItemIcon>
                     <ColorLensIcon fontSize="medium" />
                   </ListItemIcon>
@@ -287,7 +288,7 @@ export default function PrimarySearchAppBar() {
                 <Divider />
                 {/* end menu item */}
                 {/* start menu item */}
-                <MenuItem sx={{ p: 2 }} onClick={popupState2.close}>
+                <MenuItem sx={{ width: '200px' }} onClick={popupState2.close}>
                   <ListItemIcon>
                     <PetsIcon fontSize="medium" />
                   </ListItemIcon>
@@ -296,7 +297,7 @@ export default function PrimarySearchAppBar() {
                 <Divider />
                 {/* end menu item */}
                 {/* start menu item */}
-                <MenuItem sx={{ p: 2 }} onClick={popupState2.close}>
+                <MenuItem sx={{ width: '200px' }} onClick={popupState2.close}>
                   <ListItemIcon>
                     <DomainIcon fontSize="medium" />
                   </ListItemIcon>
@@ -305,7 +306,7 @@ export default function PrimarySearchAppBar() {
                 <Divider />
                 {/* end menu item */}
                 {/* start menu item */}
-                <MenuItem sx={{ p: 2 }} onClick={popupState2.close}>
+                <MenuItem sx={{ width: '200px' }} onClick={popupState2.close}>
                   <ListItemIcon>
                     <MusicNoteIcon fontSize="medium" />
                   </ListItemIcon>
@@ -314,7 +315,7 @@ export default function PrimarySearchAppBar() {
                 <Divider />
                 {/* end menu item */}
                 {/* start menu item */}
-                <MenuItem sx={{ paddingY: 1, paddingX: 2 }} onClick={popupState2.close}>
+                <MenuItem sx={{ width: '200px' }} onClick={popupState2.close}>
                   <ListItemIcon>
                     <CameraEnhanceIcon fontSize="medium" />
                   </ListItemIcon>
@@ -334,39 +335,41 @@ export default function PrimarySearchAppBar() {
                 {...bindMenu(popupState2)}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                 transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+                sx={{mt: '10px'}}
+
               >
                 {/* start menu item */}
-                <MenuItem sx={{ paddingY: 1, paddingX: 2 }} onClick={popupState2.close}>
+                <MenuItem sx={{ width: '200px' }} onClick={popupState2.close}>
                   <ListItemText>Learn</ListItemText>
                 </MenuItem>
                 <Divider />
                 {/* end menu item */}
                 {/* start menu item */}
-                <MenuItem sx={{ paddingY: 1, paddingX: 2 }} onClick={popupState2.close}>
+                <MenuItem sx={{ width: '200px' }} onClick={popupState2.close}>
                   <ListItemText>Help Center</ListItemText>
                 </MenuItem>
                 <Divider />
                 {/* end menu item */}
                 {/* start menu item */}
-                <MenuItem sx={{ paddingY: 1, paddingX: 2 }} onClick={popupState2.close}>
+                <MenuItem sx={{ width: '200px' }} onClick={popupState2.close}>
                   <ListItemText>Platform Status</ListItemText>
                 </MenuItem>
                 <Divider />
                 {/* end menu item */}
                 {/* start menu item */}
-                <MenuItem sx={{ paddingY: 1, paddingX: 2 }} onClick={popupState2.close}>
+                <MenuItem sx={{ width: '200px' }} onClick={popupState2.close}>
                   <ListItemText>Partners</ListItemText>
                 </MenuItem>
                 <Divider />
                 {/* end menu item */}
                 {/* start menu item */}
-                <MenuItem sx={{ paddingY: 1, paddingX: 2 }} onClick={popupState2.close}>
+                <MenuItem sx={{ width: '200px' }} onClick={popupState2.close}>
                   <ListItemText>Taxes</ListItemText>
                 </MenuItem>
                 <Divider />
                 {/* end menu item */}
                 {/* start menu item */}
-                <MenuItem sx={{ paddingY: 1, paddingX: 2 }} onClick={popupState2.close}>
+                <MenuItem sx={{ width: '200px' }} onClick={popupState2.close}>
                   <ListItemText>Blog</ListItemText>
                 </MenuItem>
                 {/* end menu item */}
@@ -395,9 +398,11 @@ export default function PrimarySearchAppBar() {
                 {...bindMenu(popupState3)}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                 transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+                sx={{mt: '10px'}}
+
               >
                 {/* start menu item */}
-                <MenuItem sx={{ paddingY: 1, paddingX: 2 }} onClick={popupState2.close}>
+                <MenuItem sx={{ width: '200px' }} onClick={popupState2.close}>
                   <ListItemIcon>
                     <Person2Icon fontSize="medium" />
                   </ListItemIcon>
@@ -406,7 +411,7 @@ export default function PrimarySearchAppBar() {
                 <Divider />
                 {/* end menu item */}
                 {/* start menu item */}
-                <MenuItem sx={{ p: 2 }} onClick={popupState2.close}>
+                <MenuItem sx={{ width: '200px' }} onClick={popupState2.close}>
                   <ListItemIcon>
                     <FavoriteBorderIcon fontSize="medium" />
                   </ListItemIcon>
@@ -415,7 +420,7 @@ export default function PrimarySearchAppBar() {
                 <Divider />
                 {/* end menu item */}
                 {/* start menu item */}
-                <MenuItem sx={{ p: 2 }} onClick={popupState2.close}>
+                <MenuItem sx={{ width: '200px' }} onClick={popupState2.close}>
                   <ListItemIcon>
                     <RemoveRedEyeOutlinedIcon fontSize="medium" />
                   </ListItemIcon>
@@ -424,7 +429,7 @@ export default function PrimarySearchAppBar() {
                 <Divider />
                 {/* end menu item */}
                 {/* start menu item */}
-                <MenuItem sx={{ p: 2 }} onClick={popupState2.close}>
+                <MenuItem sx={{ width: '200px' }} onClick={popupState2.close}>
                   <ListItemIcon>
                     <AppsOutlinedIcon fontSize="medium" />
                   </ListItemIcon>
@@ -433,7 +438,7 @@ export default function PrimarySearchAppBar() {
                 <Divider />
                 {/* end menu item */}
                 {/* start menu item */}
-                <MenuItem sx={{ p: 2 }} onClick={popupState2.close}>
+                <MenuItem sx={{ width: '200px' }} onClick={popupState2.close}>
                   <ListItemIcon>
                     <MusicNoteIcon fontSize="medium" />
                   </ListItemIcon>
@@ -442,7 +447,7 @@ export default function PrimarySearchAppBar() {
                 <Divider />
                 {/* end menu item */}
                 {/* start menu item */}
-                <MenuItem sx={{ paddingY: 1, paddingX: 2 }} onClick={popupState2.close}>
+                <MenuItem sx={{ width: '200px' }} onClick={popupState2.close}>
                   <ListItemIcon>
                     <CameraEnhanceIcon fontSize="medium" />
                   </ListItemIcon>
@@ -464,7 +469,7 @@ export default function PrimarySearchAppBar() {
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"
             >
-              {popWallet ? <PopupWallet /> : accountsData ? <WalletETH /> : <></>}
+              {popWallet ? <PopupWallet /> : accountsData ? <WalletETH /> : <PopupWallet />}
             </Modal>
           </Box>
         </Toolbar>

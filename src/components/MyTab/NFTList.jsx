@@ -10,7 +10,7 @@ const NFTList = ({donate}) => {
   let { nftList, isLoading, account, marketplaceContract, nftContract } =
   useSelector((state) => state.solidity);
 
-  let myNFT = nftList.filter(nft=> nft.owner.toLowerCase() == account.toLowerCase())
+  let myNFT = nftList.filter(nft=> nft.owner.toLowerCase() == account?.toLowerCase())
   console.log(nftList);
 
 

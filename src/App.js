@@ -20,35 +20,35 @@ import AuctionDetail from './pages/AuctionDetail'
 
 const App = () => {
   const dispatch = useDispatch();
-  // let accounts;
-  // const web3Handler = async () => {
-  //   // connect metamask
-  //   accounts = await window.ethereum.request({
-  //     method: 'eth_requestAccounts',
-  //   });
-  //   // Get provider from Metamask
-  //   const provider = new ethers.providers.Web3Provider(window.ethereum);
+  let accounts;
+  const web3Handler = async () => {
+    // connect metamask
+    accounts = await window.ethereum.request({
+      method: 'eth_requestAccounts',
+    });
+    // Get provider from Metamask
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
 
-  //   // Set signer
-  //   const signer = provider.getSigner();
+    // Set signer
+    const signer = provider.getSigner();
 
-  //   window.ethereum.on('chainChanged', (chainId) => {
-  //     window.location.reload();
-  //   });
+    window.ethereum.on('chainChanged', (chainId) => {
+      window.location.reload();
+    });
 
-  //   window.ethereum.on('accountsChanged', async function (accounts) {
-  //     await web3Handler();
-  //   });
-  //   dispatch({
-  //     type: CONNECT_ACC,
-  //     payload: {
-  //       account: accounts[0],
-  //     },
-  //   });
-  // };
+    window.ethereum.on('accountsChanged', async function (accounts) {
+      await web3Handler();
+    });
+    dispatch({
+      type: CONNECT_ACC,
+      payload: {
+        account: accounts[0],
+      },
+    });
+  };
 
   useEffect(() => {
-    //web3Handler();
+    web3Handler();
     dispatch(fetchSolidity());
   });
 

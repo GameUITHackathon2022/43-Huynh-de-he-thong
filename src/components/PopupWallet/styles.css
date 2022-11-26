@@ -10,6 +10,7 @@
 
 .slogan {
   padding: 8px;
+  margin-bottom: 10px;
 }
 
 .walletUser {
@@ -24,6 +25,7 @@
   align-items: center;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 15px;
+  margin-bottom: 12px;
 }
 
 .listWallet :hover {

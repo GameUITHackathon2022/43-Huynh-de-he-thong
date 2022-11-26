@@ -16,6 +16,13 @@ body {
   min-height: 100%;
 }
 
+.app {
+  /* background: rgb(84, 99, 88);
+  background: linear-gradient(41deg, rgba(84, 99, 88, 1) 0%, rgba(56, 56, 144, 1) 25%, rgba(1, 64, 124, 1) 50%, rgba(59, 59, 119, 1) 75%, rgba(101, 64, 103, 1) 100%); */       
+  background: rgb(232,248,251);
+background: linear-gradient(144deg, rgba(232,248,251,1) 0%, rgba(223,230,250,1) 17%, rgba(206,228,249,1) 46%, rgba(141,223,251,1) 63%, rgba(210,236,252,1) 79%, rgba(228,243,255,1) 90%, rgba(239,232,255,1) 100%);
+}
+
 .container{
   position: relative;
 }

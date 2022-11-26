@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, IconButton, Typography } from "@mui/material";
+import { Avatar, Box, Button, IconButton, Typography, CircularProgress } from "@mui/material";
 import React from "react";
 import coverImg from "../../assets/coverImg.jpg";
 import avatarImg from "../../assets/avatar.jpg";
@@ -6,10 +6,11 @@ import ethereum from "../../assets/ethereum.svg";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import MyTab from "../../components/MyTab/MyTab";
-
+import {useSelector} from 'react-redux'
 // const intial
 let account_data = null;
 const Accounts = () => {
+  const {account, isLoading} = useSelector(state=>state.solidity)
   return (
     <Box>
       <Box
@@ -22,6 +23,7 @@ const Accounts = () => {
         }}
       >
         <img
+        class="accountCover"
           src={coverImg}
           alt="coverImg"
           style={{
@@ -70,7 +72,7 @@ const Accounts = () => {
             }}
           >
             <Typography variant="h4" fontWeight={700}>
-              Account 1
+              {account}
             </Typography>
             <Box sx={{ display: "flex ", gap: "8px" }}>
               <img
@@ -99,7 +101,10 @@ const Accounts = () => {
       </Box>
       {/* tabs */}
       <Box mt={30}>
-        <MyTab />
+     { isLoading ? (
+    <CircularProgress />
+  ) : (
+        <MyTab />)}
       </Box>
     </Box>
   );

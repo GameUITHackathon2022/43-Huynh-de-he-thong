@@ -64,7 +64,7 @@ const AuctionDetail = () => {
   //   const handleCreateAuction = async (itemId, campId) => {
   //     const listingPrice = ethers.utils.parseEther("0.003");
   //     await (
-  //       await marketplaceContract.startAuction(itemId, 600, listingPrice)
+  //       await marketplaceContract.startAuction(itemId, 900000000000000, listingPrice)
   //     ).wait();
 
   //     // const auc = {
@@ -421,6 +421,7 @@ const AuctionDetail = () => {
                   fontWeight: "520",
                   color: "#353840",
                   fontFamily: "Poppins, sans-serif",
+                  padding:'12px 0'
                 }}
               >
                 End in {endAt?.toString()}
