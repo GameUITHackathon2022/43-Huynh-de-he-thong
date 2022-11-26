@@ -40,6 +40,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import metamask from '../../assets/metamask.png';
 import WalletETH from '../WalletETH/WalletETH';
 
+import Modal from '@mui/material/Modal';
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -81,13 +95,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
-  const handleClick = () => {
-    if (!accountsData) {
-      setPopWallet(!popWallet);
-    } else {
-      setOpenWallet(true);
-    }
-  };
   const [openWallet, setOpenWallet] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -209,6 +216,21 @@ export default function PrimarySearchAppBar() {
     variant: 'popover',
     popupId: 'demoMenu',
   });
+
+  // modal
+  const handleClick = () => {
+    if (!accountsData) {
+      setPopWallet(!popWallet);
+    } else {
+      setOpenWallet(true);
+    }
+  };
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+    handleClick();
+  };
+  const handleClose = () => setOpen(false);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -355,7 +377,7 @@ export default function PrimarySearchAppBar() {
             {/* popover 3 */}
             <React.Fragment>
               {accountsData ? (
-                <Avatar src={metamask} />
+                <Avatar {...bindHover(popupState3)} src={metamask} />
               ) : (
                 <IconButton
                   size="large"
@@ -372,7 +394,7 @@ export default function PrimarySearchAppBar() {
               <HoverMenu
                 {...bindMenu(popupState3)}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-                transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+                transformOrigin={{ vertical: 'top', horizontal: 'center' }}
               >
                 {/* start menu item */}
                 <MenuItem sx={{ paddingY: 1, paddingX: 2 }} onClick={popupState2.close}>
@@ -432,16 +454,21 @@ export default function PrimarySearchAppBar() {
             {/* end popover 3 */}
 
             {/* button wallets */}
-            <IconButton color="inherit" component="label" onClick={handleClick}>
+            <IconButton color="inherit" component="label" onClick={handleOpen}>
               <AccountBalanceWalletOutlinedIcon />
             </IconButton>
+            <Modal
+              className="superidol"
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              {popWallet ? <PopupWallet /> : accountsData ? <WalletETH /> : <></>}
+            </Modal>
           </Box>
         </Toolbar>
       </AppBar>
-      {popWallet ? <PopupWallet /> : <></>}
-      {true ? <WalletETH /> : <></>}
-      {renderMobileMenu}
-      {renderMenu}
     </Box>
   );
 }

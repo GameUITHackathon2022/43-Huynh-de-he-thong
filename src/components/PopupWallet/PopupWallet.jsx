@@ -71,7 +71,7 @@ function PopupWallet() {
   };
 
   return (
-    <Box className="wrapper">
+    <Box className="wrapper" sx={{ display: 'flex', position: 'absolute', right: '0' }}>
       <Box className="wallet">
         <Box className="walletUser">
           <Avatar />

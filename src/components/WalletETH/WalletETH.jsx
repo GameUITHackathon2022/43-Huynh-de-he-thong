@@ -16,6 +16,15 @@ const getContract = () => {
   return contract;
 };
 
+const style = {
+  position: 'absolute',
+  right: '0',
+  width: 400,
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
 function WalletETH() {
   const [isLoading, setIsLoading] = useState(false);
   const [count, setCount] = useState(0);
@@ -109,20 +118,38 @@ function WalletETH() {
   }
 
   return (
-    <Box className="wallet">
-      <Box className="container">
-        <Box className="walletUser">
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Avatar src={metamask} />
-            <Typography variant="h6" sx={{ fontWeight: '700' }}>
-              Your Wallet:
-            </Typography>
-          </Box>
-          <Typography className="walletAddress" variant="h6">
-            {account_data ? `${account_data.slice(0, 5) + '...' + account_data.slice(38, 42)}` : 'Connect Wallet'}
+    <Box className="wallet" sx={style}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          width: '100%',
+          justifyContent: 'space-between',
+        }}
+      >
+        <Box sx={{ display: 'flex', alignItems: 'center', padding: '8px' }}>
+          <Avatar src={metamask} />
+          <Typography variant="h6" sx={{ fontWeight: '700' }}>
+            Your Wallet:
           </Typography>
         </Box>
-        <Typography variant="h4">{account_data ? parseFloat(balance).toFixed(2) + ' ETH' : 'Your Balance'}</Typography>
+        <Typography className="walletAddress" variant="subtitle1" sx={{ fontStyle: 'bold', color: 'rgb(0,0,0,0.15' }}>
+          {account_data ? `${account_data.slice(0, 5) + '...' + account_data.slice(38, 42)}` : 'Connect Wallet'}
+        </Typography>
+      </Box>
+
+      <Box className="container" sx={{ padding: '8px' }}>
+        <Typography variant="subtitle1" sx={{ fontWeight: '600', opacity: '0.6' }}>
+          {account_data ? 'Total balance' : ''}
+        </Typography>
+
+        <Typography variant="h5" sx={{ fontWeight: '700', padding: '16px' }}>
+          {account_data ? parseFloat(balance).toFixed(3) + ' ETH' : 'Your Balance'}
+        </Typography>
+
+        <Typography variant="subtitle2" sx={{ fontWeight: '700', padding: '4px' }}>
+          Type amount of money you wanna donate here!
+        </Typography>
 
         <input
           className="wallet_input"
@@ -135,8 +162,16 @@ function WalletETH() {
             setAmount(e.target.value);
           }}
         ></input>
-        <Button className="wallet__button" onClick={handleClick} variant="contained">
-          <Typography>{account_data ? 'Donate' : 'Connect to Wallet'}</Typography>
+        <Button
+          className="wallet__button"
+          onClick={handleClick}
+          variant="contained"
+          color="secondary"
+          sx={{ width: '100%', height: '60px', backgroundColor: 'rgb(32, 129, 226)' }}
+        >
+          <Typography variant="h6" sx={{ fontWeight: '600', color: 'rgba(255,255,255,1)' }}>
+            {account_data ? 'Donate' : 'Connect to Wallet'}
+          </Typography>
         </Button>
       </Box>
     </Box>
