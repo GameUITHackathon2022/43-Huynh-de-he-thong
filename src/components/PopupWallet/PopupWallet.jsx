@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
@@ -10,7 +10,66 @@ import walletConnect from '../../assets/walletConnect.png';
 import phantom from '../../assets/phantom.png';
 import coreWallet from '../../assets/coreWallet.png';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { CONNECT_ACC, FETCH_SOLIDITY } from '../../constraint/actionTypes';
+import { addressReceiver, transactABI, transactAddress } from '../../utils/constants';
+import { ethers } from 'ethers';
+
+const getContract = () => {
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const signer = provider.getSigner();
+  const contract = new ethers.Contract(transactAddress, transactABI, signer);
+  console.log(contract);
+  return contract;
+};
+
 function PopupWallet() {
+  console.log('mounting component');
+
+  const [balance, setBalance] = useState();
+
+  const dispatch = useDispatch();
+
+  let accounts;
+
+  const web3Handler = async () => {
+    console.log('connecting accounts');
+    // connect metamask
+    accounts = await window.ethereum.request({
+      method: 'eth_requestAccounts',
+    });
+
+    // Get provider from Metamask
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+    // Get signer
+    const signer = provider.getSigner();
+    //get balance
+    const balance_this = await provider.getBalance(accounts[0]);
+
+    const balanceInETH = ethers.utils.formatEther(balance_this);
+
+    setBalance(balanceInETH);
+
+    window.ethereum.on('chainChanged', (chainId) => {
+      window.location.reload();
+    });
+
+    console.log('account connected account:', accounts[0]);
+
+    dispatch({
+      type: CONNECT_ACC,
+      payload: {
+        account: accounts[0],
+      },
+    });
+  };
+
+  const handleClick = () => {
+    if (!window.ethereum) return alert('Please install metamask first');
+    web3Handler();
+  };
+
   return (
     <Box className="wrapper">
       <Box className="wallet">
@@ -22,7 +81,7 @@ function PopupWallet() {
           If you don't have a wallet yet, you can select a provider and create one now.
         </Typography>
         <Box className="listWallet">
-          <Box className="walletItems">
+          <Box className="walletItems" onClick={handleClick}>
             <Avatar src={metamask} />
             <Typography className="title">Metamask</Typography>
           </Box>

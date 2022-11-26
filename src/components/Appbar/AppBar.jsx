@@ -34,6 +34,11 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined';
 import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
+import PopupWallet from '../PopupWallet/PopupWallet';
+import { useSelector, useDispatch } from 'react-redux';
+import metamask from '../../assets/metamask.png';
+import WalletETH from '../WalletETH/WalletETH';
+
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -75,11 +80,25 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
+  const handleClick = () => {
+    if (!accountsData) {
+      setPopWallet(!popWallet);
+    } else {
+      setOpenWallet(true);
+    }
+  };
+  const [openWallet, setOpenWallet] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+  const [popWallet, setPopWallet] = React.useState(false);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const accountsData = useSelector((state) => state.solidity.account);
+
+  React.useEffect(() => {
+    setPopWallet(false);
+  }, [accountsData]);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -334,18 +353,21 @@ export default function PrimarySearchAppBar() {
 
             {/* popover 3 */}
             <React.Fragment>
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                color="inherit"
-                {...bindHover(popupState3)}
-              >
-                <AccountCircle />
-              </IconButton>
-
+              {accountsData ? (
+                <Avatar src={metamask} />
+              ) : (
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  color="inherit"
+                  {...bindHover(popupState3)}
+                >
+                  <AccountCircle />
+                </IconButton>
+              )}
               <HoverMenu
                 {...bindMenu(popupState3)}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
@@ -409,12 +431,14 @@ export default function PrimarySearchAppBar() {
             {/* end popover 3 */}
 
             {/* button wallets */}
-            <IconButton color="inherit" component="label">
+            <IconButton color="inherit" component="label" onClick={handleClick}>
               <AccountBalanceWalletOutlinedIcon />
             </IconButton>
           </Box>
         </Toolbar>
       </AppBar>
+      {popWallet ? <PopupWallet /> : <></>}
+      {true ? <WalletETH /> : <></>}
       {renderMobileMenu}
       {renderMenu}
     </Box>
