@@ -13,6 +13,7 @@ import { fetchSolidity } from './actions/solidity';
 import AppBar from './components/Appbar/AppBar';
 
 import Create_NFT from './pages/Create_NFT'; 
+import Landing from './pages/Landing/Landing'; 
 
 const App = () => {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ const App = () => {
           <Container className="pages" maxWidth="xl">
             <Switch>
               <Route path="/create-nft" exact component={Create_NFT} />
+              <Route path="/" exact component={Landing} />
             </Switch>
           </Container>
         </Box>
