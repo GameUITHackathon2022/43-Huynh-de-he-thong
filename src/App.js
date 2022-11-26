@@ -15,7 +15,7 @@ import AppBar from "./components/Appbar/AppBar";
 import Create_NFT from "./pages/Create_NFT/Create_NFT";
 import Landing from "./pages/Landing/Landing";
 import Accounts from "./pages/Accounts/Accounts";
-
+import AuctionDetail from './pages/AuctionDetail'
 
 
 const App = () => {
@@ -47,10 +47,10 @@ const App = () => {
     });
   };
 
-  // useEffect(() => {
-  //   web3Handler();
-  //   dispatch(fetchSolidity());
-  // });
+  useEffect(() => {
+    web3Handler();
+    dispatch(fetchSolidity());
+  });
 
   return (
       <BrowserRouter>
@@ -62,6 +62,8 @@ const App = () => {
                 <Route path="/" exact component={Landing} />
                 <Route path="/create-nft" exact component={Create_NFT} />
                 <Route path="/account" exact component={Accounts} />
+              <Route path="/auction/:nft_id" exact component={AuctionDetail} />
+
               </Switch>
             </Box>
           </Box>

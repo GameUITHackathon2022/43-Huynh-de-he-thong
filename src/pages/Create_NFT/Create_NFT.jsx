@@ -9,7 +9,7 @@ import {
   TextField,
 } from "@mui/material";
 import DropButton from "../../components/DropButton/DropButton.jsx";
-
+import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { ethers } from "ethers";
 import { Buffer } from "buffer";
@@ -26,6 +26,7 @@ const Create_NFT = () => {
   const [buffer, setBuffer] = useState(null);
   const [waiting, setwaiting] = useState("");
 
+  const history = useHistory()
   const createNFT = async () => {
     if (!image || !name || !description) return;
     try {
@@ -87,6 +88,7 @@ const Create_NFT = () => {
       await (
         await marketplaceContract.makeItem(nftContract.address, id)
       ).wait();
+      history.push('/account')
       console.log("item count: ", marketplaceContract.itemCount());
       setwaiting("");
     } catch (error) {

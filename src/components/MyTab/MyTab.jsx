@@ -53,7 +53,7 @@ const MyTab = () => {
           aria-label="basic tabs example"
         >
           <Tab label="Collected" {...a11yProps(0)} />
-          <Tab label="Created" {...a11yProps(1)} />
+          <Tab label="Donate NFT" {...a11yProps(1)} />
           <Tab label="Favorited" {...a11yProps(2)} />
           <Tab label="Activity" {...a11yProps(3)} />
           <Tab label="More" {...a11yProps(4)} />
@@ -63,7 +63,7 @@ const MyTab = () => {
         <NFTList />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Created
+        <NFTList donate={true} />
       </TabPanel>
       <TabPanel value={value} index={2}>
         Favorited

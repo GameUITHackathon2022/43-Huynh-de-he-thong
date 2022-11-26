@@ -6,7 +6,7 @@ import NFTItem from "./NFTItem";
 import { useSelector } from "react-redux";
 
 
-const NFTList = () => {
+const NFTList = ({donate}) => {
   let { nftList, isLoading, account, marketplaceContract, nftContract } =
   useSelector((state) => state.solidity);
 
@@ -25,7 +25,7 @@ const NFTList = () => {
       }}
     >
       {myNFT?.map(nft => (
-        <NFTItem id={nft.id} title={nft.name} image={nft.image} />
+        <NFTItem id={nft.tokenId} title={nft.name} image={nft.image} donate={donate} marketplaceContract={marketplaceContract} nftContract={nftContract}/>
       ))}
     </Box>
   );

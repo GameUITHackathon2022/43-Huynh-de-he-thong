@@ -25,7 +25,7 @@ export const getAuctionById = (id) => async (dispatch) => {
       payload: data
     });
   } catch (err) {
-    console.log(err.message);
+    console.log(err);
   }
 };
 
