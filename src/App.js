@@ -12,52 +12,69 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchSolidity } from './actions/solidity';
 import AppBar from './components/Appbar/AppBar';
 
-import Create_NFT from './pages/Create_NFT';
-import PopupWallet from './components/PopupWallet/PopupWallet';
+import Create_NFT from './pages/Create_NFT/Create_NFT';
+import Landing from './pages/Landing/Landing';
+import Accounts from './pages/Accounts/Accounts';
+
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 const App = () => {
   const dispatch = useDispatch();
-  // let accounts;
-  // const web3Handler = async () => {
-  //   // connect metamask
-  //   accounts = await window.ethereum.request({
-  //     method: 'eth_requestAccounts',
-  //   });
-  //   // Get provider from Metamask
-  //   const provider = new ethers.providers.Web3Provider(window.ethereum);
+  let accounts;
+  const web3Handler = async () => {
+    // connect metamask
+    accounts = await window.ethereum.request({
+      method: 'eth_requestAccounts',
+    });
+    // Get provider from Metamask
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
 
-  //   // Set signer
-  //   const signer = provider.getSigner();
+    // Set signer
+    const signer = provider.getSigner();
 
-  //   window.ethereum.on('chainChanged', (chainId) => {
-  //     window.location.reload();
-  //   });
+    window.ethereum.on('chainChanged', (chainId) => {
+      window.location.reload();
+    });
 
-  //   window.ethereum.on('accountsChanged', async function (accounts) {
-  //     await web3Handler();
-  //   });
-  //   dispatch({
-  //     type: CONNECT_ACC,
-  //     payload: {
-  //       account: accounts[0],
-  //     },
-  //   });
-  // };
+    window.ethereum.on('accountsChanged', async function (accounts) {
+      await web3Handler();
+    });
+    dispatch({
+      type: CONNECT_ACC,
+      payload: {
+        account: accounts[0],
+      },
+    });
+  };
+
+  useEffect(() => {
+    web3Handler();
+    dispatch(fetchSolidity());
+  });
 
   return (
-    <BrowserRouter>
-      <Box className="app">
-        <AppBar />
-        <Box className="container">
-          <Container className="pages" maxWidth="xl">
-            <Switch>
-              <Route path="/create-nft" exact component={Create_NFT} />
-              <Route path="/popup" exact component={PopupWallet} />
-            </Switch>
-          </Container>
+    <ThemeProvider theme={darkTheme}>
+      <BrowserRouter>
+        <Box className="app" sx={{ color: '#fff' }}>
+          <AppBar />
+          <Box className="container">
+            <Box className="pages">
+              <Switch>
+                <Route path="/" exact component={Landing} />
+                <Route path="/create-nft" exact component={Create_NFT} />
+                <Route path="/account" exact component={Accounts} />
+              </Switch>
+            </Box>
+          </Box>
         </Box>
-      </Box>
-    </BrowserRouter>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 

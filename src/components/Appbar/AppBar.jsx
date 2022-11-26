@@ -34,11 +34,6 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined';
 import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
-import PopupWallet from '../PopupWallet/PopupWallet';
-import { useSelector, useDispatch } from 'react-redux';
-import metamask from '../../assets/metamask.png';
-import WalletETH from '../WalletETH/WalletETH';
-
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
