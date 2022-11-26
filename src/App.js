@@ -12,14 +12,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchSolidity } from './actions/solidity';
 import AppBar from './components/Appbar/AppBar';
 
-import Create_NFT from './pages/Create_NFT/Create_NFT';
+import Create_NFT from './pages/Create_NFT'; 
 
 const App = () => {
   const dispatch = useDispatch();
   let accounts;
   const web3Handler = async () => {
     // connect metamask
-    accounts = await window.ethereum.request({
+    accounts = await window.ethereum.request({ 
       method: 'eth_requestAccounts',
     });
     // Get provider from Metamask

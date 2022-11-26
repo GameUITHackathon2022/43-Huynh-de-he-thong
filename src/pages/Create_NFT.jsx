@@ -137,8 +137,8 @@ const Create_NFT = () => {
           <DropButton setImage={setImage}/>
         </Box>
         {/* end left box to upload nft */}
-
-        {/* start right box to set nft interface */}
+ 
+        {/* start right box to set nft interface */} 
         <Box
           sx={{
             display: "flex",

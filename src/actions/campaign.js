@@ -21,13 +21,12 @@ export const getCampById = (id) => async (dispatch) => {
     dispatch({ type: START_LOADING_CAMPAIGN });
 
     const { data } = await api.getCampById(id);
-  
     dispatch({
       type: FETCH_CAMP_BY_ID,
       payload: data
     });
   } catch (err) {
-    console.log(err.message);
+    console.log(err);
   }
 };
 
