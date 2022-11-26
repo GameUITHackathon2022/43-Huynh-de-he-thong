@@ -58,7 +58,11 @@ const Accounts = () => {
         >
           <Box
             className="left"
-            sx={{ display: "flex", flexDirection: "column", margin: "0 20px" }}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              margin: "0 20px",
+            }}
           >
             <Typography variant="h4" fontWeight={700}>
               Account1

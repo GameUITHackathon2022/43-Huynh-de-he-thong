@@ -52,7 +52,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Box className="app">
+      <Box className="app" sx={{ color: "#fff" }}>
         <AppBar />
         <Box className="container">
           <Box className="pages">

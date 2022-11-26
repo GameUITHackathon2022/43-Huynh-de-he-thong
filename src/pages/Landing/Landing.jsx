@@ -1,9 +1,8 @@
-import React from 'react'
+import { Box, Typography } from "@mui/material";
+import React from "react";
 
 const Landing = () => {
-  return (
-    <div>Landing</div>
-  )
-}
+  return <Typography>Landing</Typography>;
+};
 
-export default Landing
+export default Landing;
