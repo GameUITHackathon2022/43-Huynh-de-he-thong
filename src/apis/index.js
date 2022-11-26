@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'https://localhost:7271/' });
+const API = axios.create({ baseURL: 'https://nft-charity.herokuapp.com/' });
 
 // ==> token author
 // API.interceptors.request.use((req) => {
