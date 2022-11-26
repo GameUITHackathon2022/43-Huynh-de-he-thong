@@ -16,13 +16,7 @@ import Create_NFT from "./pages/Create_NFT/Create_NFT";
 import Landing from "./pages/Landing/Landing";
 import Accounts from "./pages/Accounts/Accounts";
 
-import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-const darkTheme = createTheme({
-  palette: {
-    mode: "dark",
-  },
-});
 
 const App = () => {
   const dispatch = useDispatch();
@@ -53,15 +47,14 @@ const App = () => {
     });
   };
 
-  useEffect(() => {
-    web3Handler();
-    dispatch(fetchSolidity());
-  });
+  // useEffect(() => {
+  //   web3Handler();
+  //   dispatch(fetchSolidity());
+  // });
 
   return (
-    <ThemeProvider theme={darkTheme}>
       <BrowserRouter>
-        <Box className="app" sx={{ color: "#fff" }}>
+        <Box className="app">
           <AppBar />
           <Box className="container">
             <Box className="pages">
@@ -74,7 +67,6 @@ const App = () => {
           </Box>
         </Box>
       </BrowserRouter>
-    </ThemeProvider>
   );
 };
 
