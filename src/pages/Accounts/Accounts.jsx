@@ -1,7 +1,11 @@
-import { Avatar, Box, Typography } from "@mui/material";
+import { Avatar, Box, Button, IconButton, Typography } from "@mui/material";
 import React from "react";
 import coverImg from "../../assets/coverImg.jpg";
 import avatarImg from "../../assets/avatar.jpg";
+import ethereum from "../../assets/ethereum.svg";
+import IosShareIcon from "@mui/icons-material/IosShare";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import MyTab from "../../components/MyTab/MyTab";
 
 // const intial
 let account_data = null;
@@ -9,6 +13,7 @@ const Accounts = () => {
   return (
     <Box>
       <Box
+        classname="coverImg"
         sx={{
           minWidth: "100%",
           height: "350px",
@@ -30,9 +35,9 @@ const Accounts = () => {
         sx={{
           width: "100%",
           height: "200px",
-          position: "absolute",
-          top: "35%",
           padding: "0 20px",
+          position: "absolute",
+          top: "250px",
         }}
       >
         <Box
@@ -65,9 +70,15 @@ const Accounts = () => {
             }}
           >
             <Typography variant="h4" fontWeight={700}>
-              Account1
+              Account 1
             </Typography>
-            <Box>
+            <Box sx={{ display: "flex ", gap: "8px" }}>
+              <img
+                src={ethereum}
+                alt="icon"
+                srcset=""
+                style={{ width: "10px", height: "auto" }}
+              />
               <Typography variant="subtitle2">
                 {account_data
                   ? `${
@@ -77,13 +88,18 @@ const Accounts = () => {
                     }`
                   : "Connect Wallet"}
               </Typography>
+              <Typography variant="subtitle2">Joined November 2022</Typography>
             </Box>
           </Box>
           <Box className="right" sx={{ display: "flex" }}>
-            <Avatar />
-            <Avatar />
+            <Button color="inherit" startIcon={<IosShareIcon />}></Button>
+            <Button color="inherit" startIcon={<MoreHorizIcon />}></Button>
           </Box>
         </Box>
+      </Box>
+      {/* tabs */}
+      <Box mt={30}>
+        <MyTab />
       </Box>
     </Box>
   );

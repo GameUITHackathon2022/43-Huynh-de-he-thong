@@ -16,6 +16,14 @@ import Create_NFT from "./pages/Create_NFT/Create_NFT";
 import Landing from "./pages/Landing/Landing";
 import Accounts from "./pages/Accounts/Accounts";
 
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
+
 const App = () => {
   const dispatch = useDispatch();
   let accounts;
@@ -51,20 +59,22 @@ const App = () => {
   });
 
   return (
-    <BrowserRouter>
-      <Box className="app" sx={{ color: "#fff" }}>
-        <AppBar />
-        <Box className="container">
-          <Box className="pages">
-            <Switch>
-              <Route path="/" exact component={Landing} />
-              <Route path="/create-nft" exact component={Create_NFT} />
-              <Route path="/account" exact component={Accounts} />
-            </Switch>
+    <ThemeProvider theme={darkTheme}>
+      <BrowserRouter>
+        <Box className="app" sx={{ color: "#fff" }}>
+          <AppBar />
+          <Box className="container">
+            <Box className="pages">
+              <Switch>
+                <Route path="/" exact component={Landing} />
+                <Route path="/create-nft" exact component={Create_NFT} />
+                <Route path="/account" exact component={Accounts} />
+              </Switch>
+            </Box>
           </Box>
         </Box>
-      </Box>
-    </BrowserRouter>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 
