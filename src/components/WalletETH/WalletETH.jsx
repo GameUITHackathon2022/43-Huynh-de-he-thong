@@ -125,7 +125,7 @@ function WalletETH() {
         <Typography variant="h4">{account_data ? parseFloat(balance).toFixed(2) + ' ETH' : 'Your Balance'}</Typography>
 
         <input
-          className="wallet__input"
+          className="wallet_input"
           value={amount}
           step="0.001"
           type="number"
