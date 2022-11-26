@@ -6,7 +6,16 @@ import NFTItem from "./NFTItem";
 
 const NFTList = () => {
   return (
-    <Box sx={{ display: "flex", gap: "18px" }}>
+    <Box
+      sx={{
+        display: "flex",
+        gap: "32px",
+        flexWrap: "wrap",
+        alignItems: "flex-end",
+        px: "50px",
+      }}
+    >
+      <NFTItem />
       <NFTItem />
       <NFTItem />
       <NFTItem />
